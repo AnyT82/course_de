@@ -25,4 +25,14 @@ Author: Anatoliy
 Date:   Fri Oct 28 22:38:19 2022 +0300
 
     First file with information about me
+    
+-------
+
+https://github.com/TechnoPr0/DE_Sprint
+
+commit 1d8d5164080349e81c41303ff7680c66447aa428 (HEAD -> main, origin/main, origin/HEAD)
+Author: Kirill 
+Date:   Thu Oct 27 05:31:16 2022 +0300
+
+    add README.md file
 
