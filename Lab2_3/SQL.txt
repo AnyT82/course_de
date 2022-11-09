@@ -1,0 +1,113 @@
+drop TABLE sotrudniki;
+
+CREATE TABLE sotrudniki (
+id INTEGER NOT NULL PRIMARY KEY,
+fio VARCHAR(60),
+birthday DATE,
+start_date DATE,
+jobe_title VARCHAR(30),
+jobe_status VARCHAR(10),
+salary DECIMAL(15,2),
+dept_id INTEGER,
+access VARCHAR(10)
+);
+
+INSERT INTO sotrudniki VALUES
+(1, 'Иванов Петр Семенович', '1999-03-23', '2022-05-15', 'Data Engineer', 'junior', 45000, 11, 'False'),
+(2, 'Боголюбов Иван Алексеевич', '1983-11-11', '2018-07-25', 'Data Engineer', 'senior', 230000, 11, 'True'),
+(3, 'Прижевало Борис Алексеевич', '1989-01-31', '2015-02-21', 'Data Engineer', 'lead', 290000, 11, 'True'),
+(4, 'Бойко Андрей Григорьевич', '1995-04-06', '2019-03-16', 'Software Engineer', 'middle', 215000, 21, 'True'),
+(5, 'Белгородский Илья Иванович', '1991-09-11', '2017-07-01', 'Software Engineer', 'lead', 360000, 21, 'True');
+
+drop TABLE otdely;
+
+CREATE TABLE otdely (
+dept_id INTEGER NOT NULL PRIMARY KEY,
+dept_name VARCHAR(30),
+director_fio VARCHAR(60),
+number_employ INTEGER
+);
+
+INSERT INTO otdely VALUES
+(11, 'Data Engineers', 'Прижевало Борис Алексеевич', 3),
+(21, 'Software Engineers', 'Белгородский Илья Иванович', 2);
+
+drop TABLE premiya;
+
+CREATE TABLE premiya (
+employ_id INTEGER NOT NULL PRIMARY KEY,
+first_quarter CHAR(2),
+second_quarter CHAR(2),
+third_quarter CHAR(2),
+fourth_quarter CHAR(2)
+);
+
+INSERT INTO premiya VALUES
+(1, 'C', 'D', 'C', 'D'),
+(2, 'A', 'A', 'B', 'C'),
+(3, 'E', 'B', 'B', 'B'),
+(4, 'A', 'A', 'A', 'A'),
+(5, 'A', 'B', 'C', 'B');
+
+INSERT INTO sotrudniki VALUES
+(6, 'Гончаров Игорь Владимирович', '2001-03-23', '2022-05-15', 'Data Scientist', 'junior', 55000, 31, 'False'),
+(7, 'Григорьев Виктор Петрович', '1987-11-11', '2018-07-25', 'Data Scientist', 'senior', 220000, 31, 'True'),
+(8, 'Солдатов Борис Эдуардович', '1981-01-31', '2015-02-21', 'Data Scientist', 'lead', 350000, 31, 'True');
+
+INSERT INTO otdely VALUES
+(31, 'Data Scientist', 'Солдатов Борис Эдуардович', 3),
+
+SELECT * FROM sotrudniki;
+
+SELECT * FROM otdely;
+
+SELECT * FROM premiya;
+
+SELECT id, fio, start_date FROM sotrudniki;
+
+SELECT id, fio, start_date FROM sotrudniki limit 3;
+
+SELECT * FROM sotrudniki WHERE jobe_title = 'Data Scientist';
+
+SELECT * FROM premiya WHERE first_quarter = 'D' OR second_quarter = 'D' OR third_quarter = 'D' OR fourth_quarter = 'D' OR first_quarter = 'E' OR second_quarter = 'E' OR third_quarter = 'E' OR fourth_quarter = 'E' ;
+
+SELECT MAX(salary) FROM sotrudniki ;
+
+SELECT dept_name FROM otdely Where number_employ = (SELECT MAX(number_employ) FROM otdely) ;
+
+SELECT id, start_date FROM sotrudniki ORDER BY start_date ;
+
+SELECT jobe_status, AVG(salary) AS "AV_SAL" FROM sotrudniki GROUP BY jobe_status ;
+
+
+ALTER TABLE premiya ADD COLUMN coeficient DOUBLE;
+UPDATE premiya SET coeficient=1;
+
+UPDATE premiya SET coeficient=coeficient-0.2 WHERE first_quarter='E';
+UPDATE premiya SET coeficient=coeficient-0.2 WHERE second_quarter='E';
+UPDATE premiya SET coeficient=coeficient-0.2 WHERE third_quarter='E';
+UPDATE premiya SET coeficient=coeficient-0.2 WHERE fourth_quarter='E';
+
+UPDATE premiya SET coeficient=coeficient-0.1 WHERE first_quarter='D';
+UPDATE premiya SET coeficient=coeficient-0.1 WHERE second_quarter='D';
+UPDATE premiya SET coeficient=coeficient-0.1 WHERE third_quarter='D';
+UPDATE premiya SET coeficient=coeficient-0.1 WHERE fourth_quarter='D';
+
+UPDATE premiya SET coeficient=coeficient+0.1 WHERE first_quarter='B';
+UPDATE premiya SET coeficient=coeficient+0.1 WHERE second_quarter='B';
+UPDATE premiya SET coeficient=coeficient+0.1 WHERE third_quarter='B';
+UPDATE premiya SET coeficient=coeficient+0.1 WHERE fourth_quarter='B';
+
+UPDATE premiya SET coeficient=coeficient+0.2 WHERE first_quarter='A';
+UPDATE premiya SET coeficient=coeficient+0.2 WHERE second_quarter='A';
+UPDATE premiya SET coeficient=coeficient+0.2 WHERE third_quarter='A';
+UPDATE premiya SET coeficient=coeficient+0.2 WHERE fourth_quarter='A';
+
+
+ALTER TABLE sotrudniki ADD COLUMN coeficient DOUBLE;
+
+UPDATE sotrudniki SET coeficient=(SELECT coeficient FROM premiya WHERE sotrudniki.id = premiya.employ_id ) 
+where exists (select coeficient from premiya where sotrudniki.id = premiya.employ_id);
+
+SELECT id, coeficient FROM sotrudniki ;
+
