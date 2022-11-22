@@ -1,0 +1,17 @@
+SELECT fio, salary FROM SOTRUDNIKI WHERE salary= (SELECT MAX(salary) FROM SOTRUDNIKI);
+
+SELECT fio FROM SOTRUDNIKI GROUP BY fio ;
+
+SELECT jobe_status, AVG(CURRENT_DATE - start_date) FROM SOTRUDNIKI GROUP BY jobe_status;
+
+SELECT s.fio, o.dept_name FROM SOTRUDNIKI AS s JOIN OTDELY AS o ON s.dept_id=o.dept_id;
+
+WITH dept_max_salary AS (SELECT dept_id, MAX(salary) AS max_salary FROM SOTRUDNIKI GROUP BY dept_id),
+     fio_dept AS (SELECT s.dept_id, s.salary, s.fio, o.dept_name FROM SOTRUDNIKI AS s JOIN OTDELY AS o ON s.dept_id=o.dept_id)
+SELECT dms.max_salary, fd.fio, fd.dept_name FROM dept_max_salary dms 
+INNER JOIN fio_dept fd ON dms.dept_id=fd.dept_id WHERE  dms.max_salary=fd.salary ;
+
+/* 
+Сделал только первые пять задания,  к сожалению,  не хватает времени.
+В задание "Е" получился сложный запрос. Возможно, я что-то не понял? 
+*/
