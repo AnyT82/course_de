@@ -1,0 +1,34 @@
+hdfs dfs -copyFromLocal /home/cloudera/Desktop/vim1.txt /user/cloudera
+hdfs dfs -copyFromLocal /home/cloudera/Desktop/vim2.txt /user/cloudera
+hdfs dfs -copyFromLocal /home/cloudera/Desktop/vim3.txt /user/cloudera
+hdfs dfs -copyFromLocal /home/cloudera/Desktop/vim4.txt /user/cloudera
+
+hdfs dfs -copyFromLocal /home/cloudera/Desktop/vim1.txt /user/cloudera
+Found 4 items
+-rw-r--r--   1 cloudera cloudera     736519 2022-11-30 08:55 vim1.txt
+-rw-r--r--   1 cloudera cloudera     770324 2022-11-30 08:57 vim2.txt
+-rw-r--r--   1 cloudera cloudera     843205 2022-11-30 08:57 vim3.txt
+-rw-r--r--   1 cloudera cloudera     697960 2022-11-30 08:57 vim4.txt
+
+hdfs dfs -getmerge -nl /user/cloudera/vim1.txt /user/cloudera/vim2.txt /user/cloudera/vim3.txt /user/cloudera/vim4.txt /home/cloudera/Desktop/vim1234.txt
+
+
+hdfs dfs -chmod 764 vim1.txt 
+hdfs dfs -ls
+Found 4 items
+-rwxrw-r--   1 cloudera cloudera     736519 2022-11-30 08:55 vim1.txt
+-rw-r--r--   1 cloudera cloudera     770324 2022-11-30 08:57 vim2.txt
+-rw-r--r--   1 cloudera cloudera     843205 2022-11-30 08:57 vim3.txt
+-rw-r--r--   1 cloudera cloudera     697960 2022-11-30 08:57 vim4.txt
+
+hdfs dfs -du -h vim1.txt
+719.3 K  719.3 K  vim1.txt
+
+hdfs dfs -setrep -R -w 2 vim1.txt
+hdfs dfs -du -h vim1.txt
+719.3 K  1.4 M  vim1.txt
+
+hdfs dfs -cat vim1.txt | wc -l
+3392
+
+
