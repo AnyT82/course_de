@@ -1,38 +1,22 @@
-Папышев Анатолий.
+# DE_Sprint
 
-В свобдное от работы время люблю активный спорт: футбол, сноубор, вейкборд.
+1. Введение:
 
-------------------
+    1. Инженер данных. Цели, направления, задачи
+    1. Технологии DataScience и BigData
+    1. Основы синтаксиса и структур в Python
+    1. Использование библиотек NumPy, SciPy
+    1. Обработка данных в Python. Библиотека Pandas.
+    1. Библиотеки Python для визуализации данных
+    1. Синтаксис языка программирования С++
 
-Высшее образование, магистр 
+1. Базы данных:
+    1. Коллективная работа: GIT, CI/CD
+    1. Программирование Scala
+    1. Реляционные базы данных: PostgreSQL
+    1. Запросы и практика: SQL, join, union и др.
 
-------------------
-
-commit 578614ec92afb5bd85d7aa15f4daa7e6cf0902f5 (HEAD -> develop)
-Author: Anatoliy 
-Date:   Mon Oct 31 18:22:32 2022 +0300
-
-    First add to develop
-
-commit 5b6ede040687309f47317af362d45af0bc16d0a8 (origin/master, master)
-Author: Anatoliy 
-Date:   Fri Oct 28 23:10:30 2022 +0300
-
-    Second commit
-
-commit 87e0cde7a968e12aafa6ba1a4c8e07feca84d015
-Author: Anatoliy 
-Date:   Fri Oct 28 22:38:19 2022 +0300
-
-    First file with information about me
-    
--------
-
-https://github.com/TechnoPr0/DE_Sprint
-
-commit 1d8d5164080349e81c41303ff7680c66447aa428 (HEAD -> main, origin/main, origin/HEAD)
-Author: Kirill 
-Date:   Thu Oct 27 05:31:16 2022 +0300
-
-    add README.md file
-
+1. Обработка данных
+    1. Распределенные файловые системы: HDFS
+    1. Обработка данных: Spark
+    1. Команды Spark
