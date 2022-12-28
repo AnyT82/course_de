@@ -11,7 +11,3 @@ WITH dept_max_salary AS (SELECT dept_id, MAX(salary) AS max_salary FROM SOTRUDNI
 SELECT dms.max_salary, fd.fio, fd.dept_name FROM dept_max_salary dms 
 INNER JOIN fio_dept fd ON dms.dept_id=fd.dept_id WHERE  dms.max_salary=fd.salary ;
 
-/* 
-Сделал только первые пять задания,  к сожалению,  не хватает времени.
-В задание "Е" получился сложный запрос. Возможно, я что-то не понял? 
-*/
